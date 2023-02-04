@@ -1,6 +1,6 @@
 import sys
 sys.path.append('.')
-from files_helper import *
+from src.files_helper import *
 
 if __name__ == '__main__':
     files_helper = FileHelper()
