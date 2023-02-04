@@ -16,18 +16,19 @@ class FileHelper:
         for nombre_directorio, dirs, ficheros in os.walk(dir_path, topdown=False):
             # print(nombre_directorio)
             for nombre_fichero in ficheros:
-                if self.__is_text_file(os.path.join(nombre_directorio, nombre_fichero)):
-                    self.__process_text_file(nombre_directorio, nombre_fichero)
+                file_path = os.path.join(nombre_directorio, nombre_fichero)
+                if self.__is_text_file(file_path):
+                    self.buscar(file_path, "wax synthase")
 
-    def __process_text_file(self, path, filename):
-        file = open(os.path.join(path, filename), 'r')
+    def buscar(self, file_path, search_input):
+        file = open(file_path, 'r')
         Lines = file.readlines()
         dir_is_printed = False
         # Strips the newline character
         for line in Lines:
-            if line.find("wax synthase") != -1:
+            if line.find(search_input) != -1:
                 if not dir_is_printed:
-                    print(path.replace("\\", "/"))
+                    print(file_path.replace("\\", "/"))
                     dir_is_printed = True
                 print("\t" + line, end='')
 
